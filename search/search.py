@@ -139,10 +139,23 @@ def breadthFirstSearch(problem):
   """
 
   # Note: Try using Queue or PriorityQueue data structure since DFS uses FIFO
+  frontier = util.Queue()
+  frontier.push((problem.getStartState(), []))
+  explored = set()
 
-  "*** YOUR CODE HERE ***"
-  util.raiseNotDefined()
-      
+  while not frontier.isEmpty():
+      (move, path) = frontier.pop()
+      if problem.isGoalState(move):
+          return path
+
+      explored.add(move)
+      successors = problem.getSuccessors(move)
+      for state, action, cost in successors:
+          if state not in explored:
+              frontier.push((state, path + [action]))
+
+  return []
+
 def uniformCostSearch(problem):
   "Search the node of least total cost first. "
   "*** YOUR CODE HERE ***"
