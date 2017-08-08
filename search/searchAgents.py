@@ -339,7 +339,7 @@ def cornersHeuristic(state, problem):
   """
   A heuristic for the CornersProblem that you defined.
   
-    state:   The current search state 
+    state:   The current search state
              (a data structure you chose in your search problem)
     
     problem: The CornersProblem instance for this layout.  
@@ -350,9 +350,19 @@ def cornersHeuristic(state, problem):
   """
   corners = problem.corners # These are the corner coordinates
   walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
-  
-  "*** YOUR CODE HERE ***"
-  return 0 # Default to trivial solution
+
+  heuristic = 0
+
+  (current_position, corners) = state
+  for corner in corners:
+      heuristic += manhattanDistance(current_position, corner)
+
+  return heuristic
+
+def manhattanDistance(position1, position2, info={}):
+  xy1 = position1
+  xy2 = position2
+  return abs(xy1[0] - xy2[0]) + abs(xy1[1] - xy2[1])
 
 class AStarCornersAgent(SearchAgent):
   "A SearchAgent for FoodSearchProblem using A* and your foodHeuristic"
