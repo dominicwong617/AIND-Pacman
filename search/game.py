@@ -158,6 +158,9 @@ class Grid:
     if bitRepresentation:
       self._unpackBits(bitRepresentation)
 
+  def __lt__(self, Grid):
+    return False
+
   def __getitem__(self, i):
     return self.data[i]
 
