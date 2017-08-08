@@ -355,7 +355,7 @@ def cornersHeuristic(state, problem):
 
   (current_position, corners) = state
   for corner in corners:
-      heuristic += manhattanDistance(current_position, corner)
+      heuristic += euclideanDistance(current_position, corner)
 
   return heuristic
 
@@ -363,6 +363,11 @@ def manhattanDistance(position1, position2, info={}):
   xy1 = position1
   xy2 = position2
   return abs(xy1[0] - xy2[0]) + abs(xy1[1] - xy2[1])
+
+def euclideanDistance(position1, position2):
+  xy1 = position1
+  xy2 = position2
+  return ( (xy1[0] - xy2[0]) ** 2 + (xy1[1] - xy2[1]) ** 2 ) ** 0.5
 
 class AStarCornersAgent(SearchAgent):
   "A SearchAgent for FoodSearchProblem using A* and your foodHeuristic"
